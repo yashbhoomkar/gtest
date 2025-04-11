@@ -62,3 +62,14 @@ pattern = "**/*.{cpp,h}"
 
 [languages.cpp.languageServer]
 start = "clangd"
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Run Tests"
+author = 18298668
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cmake --log-level=WARNING -B/tmp/build . && make -s -C /tmp/build && /tmp/build/runTests"
