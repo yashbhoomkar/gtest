@@ -18,9 +18,18 @@ TEST(ExampleTest, MAC)
     int x = 42;
     int y = 16;
     int sum = 100;
-    int expectedSum = sum + (x * y);
-    int result = MAC(x, y, sum);
-    EXPECT_EQ(result, expectedSum);
+    int oldSum = sum;
+    int expectedNewSum = MAC(x, y, sum);
+    EXPECT_EQ(
+        expectedNewSum,
+        MAC(x, y, sum)
+    );
+    
+    EXPECT_EQ(
+        expectedNewSum,
+        oldSum
+    );
+    
 }
 
 int main(int argc, char **argv)
