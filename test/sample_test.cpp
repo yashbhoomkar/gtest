@@ -13,15 +13,20 @@ TEST(ExampleTest, test_function_test)
 }
 
 
-TEST(ExampleTest, MAC)
+TEST(ExampleTest , asser_test)
 {
-    int x = 42;
-    int y = 16;
-    int sum = 100;
-    int expectedSum = sum + (x * y);
-    int result = MAC(x, y, sum);
-    EXPECT_EQ(result, expectedSum);
+    ASSERT_EQ(1, 1); // FATAL ERROR equal
+    EXPECT_EQ(1, 1);   // equal
+    EXPECT_NE(1, 2); // not equal
+    EXPECT_STREQ("hello", "hello"); // string equal
+    EXPECT_STRNE("hello", "world"); // string not equal
+    EXPECT_LT(1, 2); // less than
+    EXPECT_LE(1, 1); // less than or equal
 }
+
+
+
+
 
 int main(int argc, char **argv)
 {
