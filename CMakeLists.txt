@@ -1,27 +1,26 @@
-cmake_minimum_required(VERSION 3.10)
-project(workspace)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-set(CMAKE_CXX_COMPILER "clang++")
-set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+cmake_minimum_required (VERSION 3.0.0)
+project (main CXX)
+
+SET(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+SET(CMAKE_CXX_COMPILER "clang++")
+SET(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
 
+# Enable testing
 enable_testing()
 find_package(GTest REQUIRED)
 
-# Add the source files
-set(SOURCES
-    src/Example.cpp
-    src/main.cpp #Adding main.cpp explicitly, assuming it's needed for the main executable
-)
+include_directories(include)
+file(GLOB SRC src/*.cpp)
+file(GLOB TEST_SRC test/*.cpp)
 
 # Main executable
-add_executable(main ${SOURCES})
+add_executable(main ${SRC})
 
 # Test executable
-add_executable(runTests test/sample_test.cpp ${SOURCES})
+add_executable(runTests ${TEST_SRC})
 target_link_libraries(runTests GTest::GTest GTest::Main)
 
 add_test(NAME unit_tests COMMAND runTests)
