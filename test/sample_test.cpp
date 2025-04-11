@@ -7,7 +7,7 @@ TEST(SampleTest, SimpleAssertion) {
 
 TEST(SampleTest, AnotherAssertion)
 {
-    ASSERT_EQ(val1, val2)_EQ(10, 11);
+    ASSERT_EQ(10, 11);
 }
 
 int main(int argc, char **argv)
